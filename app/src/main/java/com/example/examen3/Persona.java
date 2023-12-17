@@ -26,11 +26,11 @@ public class Persona {
         Periodista = periodista;
     }
 
-  /*  public String getFecha() {
+     public String getFecha() {
         return Fecha;
     }
 
     public void setFecha(String fecha) {
         Fecha = fecha;
-        }*/
+    }
 }

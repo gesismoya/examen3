@@ -56,11 +56,11 @@ public class Adapter extends FirestoreRecyclerAdapter<Persona, Adapter.PersonVie
             });
         }
 
-        public void bind(Persona person) {
+        public void bind(Persona persona) {
             // Bind data to TextViews
-            nombrePeriodista.setText(person.getPeriodista());
-            Descripcion.setText(person.getDescripcion());
-            // fecha.setText(person.getFecha());
+            nombrePeriodista.setText(persona.getPeriodista());
+            Descripcion.setText(persona.getDescripcion());
+            //fecha.setText(persona.getFecha());
         }
     }
 }

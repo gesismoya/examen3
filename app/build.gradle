@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.example.examen3'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.examen3"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -35,6 +35,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.firebase:firebase-firestore:24.10.0'
+    implementation 'com.google.firebase:firebase-storage:20.3.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -43,4 +44,14 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'io.grpc:grpc-android:1.43.1'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'com.google.firebase:firebase-storage:20.3.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'  // Para AppCompatActivity
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'  // Para RecyclerView
+    implementation 'androidx.cardview:cardview:1.0.0'  // Si usas CardView en tu RecyclerView
 }

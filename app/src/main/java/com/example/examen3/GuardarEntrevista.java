@@ -1,19 +1,27 @@
 package com.example.examen3;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GuardarEntrevista extends AppCompatActivity {
 
@@ -85,7 +93,7 @@ public class GuardarEntrevista extends AppCompatActivity {
             }
 
             if (imageUri != null) {
-                //  fileName += "." + getFileExtension(imageUri);
+                fileName += "." + getFileExtension(imageUri);
                 uploadFileToStorage(imageStorageReference.child(fileName), imageUri);
             }
         } else {
@@ -100,14 +108,14 @@ public class GuardarEntrevista extends AppCompatActivity {
                 .addOnSuccessListener(taskSnapshot -> {
                     progressDialog.dismiss();
                     registrarUsuarioRespaldoFirebase();
-                    Toast.makeText(subir_entrevista.this, "Archivo almacenado con éxito", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(subir_entrevista.this, listaentrevista.class);
+                    Toast.makeText(GuardarEntrevista.this, "Archivo almacenado con éxito", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(GuardarEntrevista.this, MainActivity.class);
 
                     startActivity(intent);
                 })
                 .addOnFailureListener(e -> {
                     progressDialog.dismiss();
-                    Toast.makeText(subir_entrevista.this, "Error al almacenar el archivo: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GuardarEntrevista.this, "Error al almacenar el archivo: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -154,7 +162,7 @@ public class GuardarEntrevista extends AppCompatActivity {
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(getApplicationContext(), "Registro completo", Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(subir_entrevista.this, Perfil_entrevista.class);
+                        Intent intent = new Intent(GuardarEntrevista.this, EntrevistaActivity.class);
                         intent.putExtra("Periodista", String.valueOf(edtperiodista.getText().toString().trim()));
                         intent.putExtra("Descripcion", String.valueOf(etDescripcion.getText().toString().trim()));
                         intent.putExtra("fecha", String.valueOf(edtfecha.toString()));
@@ -165,7 +173,7 @@ public class GuardarEntrevista extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(GuardarEntrevista.this, "", Toast.LENGTH_SHORT).show();.makeText(getApplicationContext(), "Registro no ingresado", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Registro no ingresado", Toast.LENGTH_LONG).show();
                     }
                 });
     }
